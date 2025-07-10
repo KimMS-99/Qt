@@ -7,7 +7,5 @@ Qt에서도 이러한 이벤트를 처리하기 위한 방법을 제공하는데
 
 시그널과 슬롯을 연결할 때 QObject 클래스에서 connect() 메소드를 제공했던 것과 같이, 연결된 슬롯과 시그널의 분리를 위해 QObject::disconnect()메소드를 제공한다.
 
-***실행 결과***
----
-button 이미지
----
+***실행 결과***<br>
+![button](https://github.com/user-attachments/assets/9bf1ceee-e0d1-4293-8c9a-d6d142d15c90)
