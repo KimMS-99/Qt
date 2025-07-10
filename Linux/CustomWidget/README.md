@@ -34,7 +34,6 @@ connect(button, SIGNAL(clicked()), SIGNAL(widgetClicked()));
 
 ***main.cpp***를 보면 QApplication 클래스의 quit() 슬롯을 연결한 후 코드를 빌드해서 실행하보면 앞에서 설명한 것과 같이 코드를 빌드하기 전에 반드시 'qmake' 유틸리티를 통해서 makefile을 다시 생성해야 한다.
 
-***실행 결과***
----
-customwidget 이미지
----
+***실행 결과***<br>
+![customwidget](https://github.com/user-attachments/assets/c4347684-9786-49ff-90ae-448a05fccd0e)
+
