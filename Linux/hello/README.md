@@ -12,10 +12,9 @@ QLabel 객체를 바로 생성하면 메인 메모리상에만 존재하고 사�
 
 Qt 프로그램을 제대로 실행하기 위해서는 환경 변수인 QTDIR, PATH, LED_LIBRARY_PATH 중에서 공유 라이브러리와 관련된 환경 변수인 LED_LIBRARY_PATH가 제대로 설정되어 있어야 한다.
 
-***실행 결과***
----
-hello1 이미지
----
+***실행 결과*** <br>
+![hello1](https://github.com/user-attachments/assets/dfcf2a9e-f158-4efa-a70c-f346fe76b8bd)
+![hello2](https://github.com/user-attachments/assets/6e50421d-66d6-41e2-b09a-d94b368bfffd)
 
 # Qt의 위젯
 
