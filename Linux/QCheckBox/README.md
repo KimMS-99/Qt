@@ -8,12 +8,10 @@ QCheckBox 위젯을 이용해서 각각의 버튼을 만들고 버튼이 선택�
 
 코드를 실행해보면 체크 박스가 표시되는데 체크 박스를 선택하면 레이블에 선택한 버튼의 ID가 표시된다. 버튼 선택 시 ID를 제대로 표시하려면, 버튼을 그룹에 추가할 때 addButton() 메소드의 두 번째 인자의 값을 제대로 설정해야 한다. 두 번째 인자의 기본값은 -1이기 때문에, 버튼의 ID를 명시해주지 않으면 제대로 표시되지 않으니 주의.
 
-***실행 결과***
----
-qcheckbox 이미지
-qcheckbox1 이미지
-qcheckbox2 이미지
----
+***실행 결과***<br>
+![qcheckbox](https://github.com/user-attachments/assets/ecf5231f-400b-4685-9b25-ee0ea1698b79)
+![qcheckbox1](https://github.com/user-attachments/assets/df80741e-427c-434f-982d-b234d99ff496)
+![qcheckbox2](https://github.com/user-attachments/assets/a9c882e3-6349-4f09-8f89-eecaa5638bc6)
 
 #### 시그널과 슬롯의 연결
 
