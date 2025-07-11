@@ -4,4 +4,6 @@
 
 **QWidget** 클래스는 배치와 관련된 메소드를 제공하는데, x(), y(), pos(), frameGeometry(), move(), setGeometry() 같은 위젯들의 크기와 위치와 관련된 메소드가 있다.
 
-윈도우를 화면에 배치하면 X 윈도의 윈도우 매니저나 윈도우나 macOS와 같은 운영체계에 의해서 타이틀바와 외각의 프레임들이 자동으로 붙는데, Qt에서 프레임과 관련된 메소드들이 구분된다. 주로 위치와 관련된 x(), y(), pos(), move()와 frameGeometry() 같은 메소드는 윈도우 프레임의 영향을 받고, 주로 크기와 관련된 width(), height(), rect(), size()와 geometry()
+윈도우를 화면에 배치하면 X 윈도의 윈도우 매니저나 윈도우나 macOS와 같은 운영체계에 의해서 타이틀바와 외각의 프레임들이 자동으로 붙는데, Qt에서 프레임과 관련된 메소드들이 구분된다. 주로 위치와 관련된 x(), y(), pos(), move()와 frameGeometry() 같은 메소드는 윈도우 프레임의 영향을 받고, 주로 크기와 관련된 width(), height(), rect(), size()와 geometry() 같은 메소드는 윈도우 프레임의 영향을 받지 않는다.
+
+위젯을 폼에 배치할 때는 부모 위젯에서의 상대적인 위치만을 고려하면 되는데, 위젯의 좌표는 부모 윈도우나 절대적 좌표의 기준점인 루트 윈도우(Screen: 바탕 화면)에서 다르다. 경우에 따라 다른 좌표계로의 변환이 필요할 수 있는데, 이를 위해서 **QWidget** 클래스는 matToGlobal(), mapFromGlobal(), mapToParent(), mapFromParent(), mapTo(), mapFrom()과 같은 메소드를 제공한다.
