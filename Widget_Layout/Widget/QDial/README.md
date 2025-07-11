@@ -5,4 +5,4 @@
 **QDial** 위젯은 자동차 속도계와 같은 모양을 갖고 범위를 원형으로 설정할 수 있다.
 
 + **실행 결과**<br>
-dial
+<img width="134" height="155" alt="dial" src="https://github.com/user-attachments/assets/7be62a29-9db1-4a81-b0b9-591d091b7529" />
