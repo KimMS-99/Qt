@@ -39,3 +39,7 @@ connect(button, SIGNAL(clicked()), SIGNAL(widgetClicked()));
 + ***실행 결과***<br>
 ![customwidget](https://github.com/user-attachments/assets/c4347684-9786-49ff-90ae-448a05fccd0e)
 
+**Qt connect()**는 2번째 인자 (시그널 함수)의 매개변수와 번째 인자 (슬롯 함수)의 매개변수는 일치하거나, 슬롯이 시그널 매개변수보다 적거나 타입 호환 가능해야 한다.
++ 시그널 매개변수 → 슬롯 매개변수로 자동으로 값이 전달된다고 보면 된다.
++ 슬롯은 시그널 매개변수의 일부만 받을 수도 있음 (예: 시그널이 (int, QString)인데 슬롯이 (int)만 받음)
++ 타입은 완전히 동일하거나, 암묵적 변환 가능한 타입이어야 에러 없이 연결됨.
