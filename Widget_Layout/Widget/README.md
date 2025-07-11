@@ -3,7 +3,7 @@
 ## 목차
 
 0. [Qt 프로그래밍과 사용자 정의 위젯](#qt-프로그래밍과-사용자-정의-위젯)
-1. [HelloWorld](./hello)
+1. [HelloWorld](./hello/)
 2. [QtEvent(Button)](./QtEvent(Button)/)
 3. [CustomWidget](./CustomWidget/)
 4. [QPushButton](./QPushButton/)
