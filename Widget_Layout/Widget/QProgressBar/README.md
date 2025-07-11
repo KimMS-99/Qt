@@ -5,4 +5,4 @@
 진행 상황을 표시하기 위해 그래프 형태의 그림과 함께 문자를 사용할 수 있으며, **setOrientation()** 메소드를 이용해서 수직(Qt::Vertical)이나 수평(기본값, **Qt::Horizontal**) 방향 설정이 가능하다.
 
 + ***실행 결과***
-progressbar.png
+<img width="191" height="52" alt="progressbar" src="https://github.com/user-attachments/assets/ac35906f-8d21-4964-9529-e0d1c2933e57" />
