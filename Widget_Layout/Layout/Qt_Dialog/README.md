@@ -35,7 +35,7 @@
 다이얼로그 중에서 가장 많이 사용되는 다이얼로그가 메시지 박스이다.
 
 + **실행 결과**
-messagebox
+<img width="249" height="114" alt="messagebox" src="https://github.com/user-attachments/assets/721f5687-0b59-4e2e-a2a0-aa260f4b63ac" />
 
 메시지 박스는 사용자에게 시스템 오류나 정보등의 정보를 보여줄 때 사용되는데 **Qt**에서도 일반적인 운영체제에서 많이 사용되는 네 종류의 메시지 박스를 제공한다.
 
