@@ -5,7 +5,7 @@
 **QRadioButton** 위젯의 경우에 욥션을 한눈에 모두 살펴볼 수 있다는 장점은 있지만 버튼을 배치하기 위해 사용되는 공간이 너무 넓다. 하지만 **QComboBox** 위젯의 경우에는 **QLineEdit** 위젯 만큼의 공간을 차지하고 옵션 값을 추가로 입력할 수 있다는 장점을 제공한다. **setEditable(true)** 메소드를 사용하면 콤보 박스의 창을 **QLineEdit** 위젯처럼 사용할 수 있는데, 사용자가 입력한 값은 기본적으로 콤보 박스의 마지막에 추가된다.
 
 + **실행 결과**<br>
-commobox1<br>
-combobox2<br>
+<img width="107" height="98" alt="combobox1" src="https://github.com/user-attachments/assets/db315330-e8df-436d-8dc6-6ae7d884b991" />
+<img width="105" height="170" alt="combobox2" src="https://github.com/user-attachments/assets/608ae413-7f8a-43e7-9690-ff7cfd457679" />
 
 **QComboBox** 위젯의 항목(Item)이 너무 많을 경우에는 화면을 넘길 때도 문제거 발생한다. 이런 경우 항목의 성격에 따라서 각각을 소그룹으로 나누어 여러 개의 콤보 박스나 다른 위젯으로 분리하여 사용해야 한다.
