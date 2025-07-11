@@ -5,4 +5,4 @@
 **QLCDNumber** 위젯은 숫자를 2진수(Bin), 10진수(Dec), 8진수(Oct), 16진수(Hex) 모드로 표시할 수 있으며, 모드 변환 메소드를 이용하면 현재의 값을 해당 진수의 값으로 자동 변환할 수 있다.
 
 + ***실행 결과***
-lcdnumber.png
+<img width="111" height="109" alt="lcdnumber" src="https://github.com/user-attachments/assets/6bba5258-3de2-4ea3-a8fa-94fd56a756c0" />
