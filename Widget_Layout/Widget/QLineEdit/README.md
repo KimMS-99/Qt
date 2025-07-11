@@ -16,5 +16,5 @@
 에코 모드에 따라서 입력된 값을 표시하는 형태가 달라진다. **PasswordEchoOnEdit** 옵션은 입력할 때는 정상적인 문자로 표시되지만, 포커스를 잃으면 입력된 문자가 '*'로 변경되어서 표시된다.
 
 + ***실행 결과***<br>
-lineedit1<br>
-lineedit2
+<img width="192" height="52" alt="lineedit1" src="https://github.com/user-attachments/assets/e7404b7e-f59c-48fa-be9b-69741b0c0c94" />
+<img width="192" height="57" alt="lineedit2" src="https://github.com/user-attachments/assets/50d38a39-3999-4eff-b4c6-d15cfd7a1cde" />
