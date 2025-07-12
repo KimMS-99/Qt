@@ -23,3 +23,6 @@ p->load(QUrl("Ip or Address")); // 특정 URL의 콘텐츠를 불러오도록 �
 // p->load(...): QWebEngineView의 멤버 함수로, 주어진 URL의 콘텐츠를 로드
 ui->Layout->addWidget(p;)
 ```
+
++ **화면**
+<img width="947" height="702" alt="webcam" src="https://github.com/user-attachments/assets/d130578f-1977-448c-a06b-6e0b4559ba2d" />
