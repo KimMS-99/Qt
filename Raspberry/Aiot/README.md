@@ -1,6 +1,6 @@
 # Qt 기반 Aiot 애플리케이션
 
-이 애플리케이션은 라즈베리파이와 같은 임베디드 환경에서 [디바이스 드라이버(ledkey_poll_dev.c)](https://github.com/KimMS-99/IntelAISW_LinuxBsp/tree/main/p432_ledkey_poll)를 이용해 LED 및 버튼(Key)을 제어하고, 소켓 통신을 통해 [서버(iot_server.c)](https://github.com/KimMS-99/C_CPP/blob/main/Tcp%3AIp/IotServer/iot_server.c)와 연결하여 데이터를 주고받기 위해 만든 예제이다.
+이 애플리케이션은 라즈베리파이와 같은 임베디드 환경에서 [디바이스 드라이버(ledkey_poll_dev.c)](https://github.com/KimMS-99/IntelAISW_LinuxBsp/blob/main/DeviceDriver/p432_ledkey_poll/ledkey_poll_dev.c)를 이용해 LED 및 버튼(Key)을 제어하고, 소켓 통신을 통해 [서버(iot_server.c)](https://github.com/KimMS-99/C_CPP/blob/main/Tcp%3AIp/iot_server/iot_server.c)와 연결하여 데이터를 주고받기 위해 만든 예제이다.
 
 ## 사전 준비 사항
 

@@ -1,6 +1,6 @@
 # `SockClient` 클래스 (`sockclient.h`, `sockclient.cpp`)
 
-`SockClient` 클래스는 TCP/IP 소켓 통신을 통해 서버(라즈베리파이)와 데이터를 주고받는 클라이언트 역할을 담당합니다. 이 클래스는 서버 연결, 데이터 송수신, 연결 상태 관리 등의 기능을 제공합니다.
+`SockClient` 클래스는 TCP/IP 소켓 통신을 통해 [서버(라즈베리파이)](https://github.com/KimMS-99/C_CPP/blob/main/Tcp%3AIp/iot_server/iot_server.c)와 데이터를 주고받는 클라이언트 역할을 담당합니다. 이 클래스는 서버 연결, 데이터 송수신, 연결 상태 관리 등의 기능을 제공합니다.
 
 ## 주요 기능 및 역할
 
@@ -46,4 +46,4 @@
 
 이 클라이언트와 연동되는 라즈베리파이 서버 코드는 다음 GitHub 링크에서 확인할 수 있습니다:
 
-[라즈베리파이 서버 코드 GitHub 링크](YOUR_RASPBERRY_PI_SERVER_CODE_GITHUB_LINK_HERE)
+[라즈베리파이 서버 코드 GitHub 링크](https://github.com/KimMS-99/C_CPP/blob/main/Tcp%3AIp/iot_server/iot_server.c)
