@@ -5,5 +5,5 @@
 **QSpinBox** 위젯에 특별한 값이나 용도 등을 표시하기 위해 **setSpecialValueText()** 메소드를 이용해서 문자열을 표시할 수 있다. **setPrefix()**나 **setSuffix()** 같은 메소드를 이용해서 숫자에 $와 같은 통화 기호등의 문자를 추가로 표시할 수 있다.
 
 + **실행 결과**<br>
-<img width="110" height="62" alt="spinbox1" src="https://github.com/user-attachments/assets/ffaaf191-3669-4568-9af1-dd9fca1bb421" />
-<img width="108" height="67" alt="spinbox2" src="https://github.com/user-attachments/assets/032eebee-96ea-480b-b521-8654a25155e1" />
+![spinbox](../../../docs/Img/spinbox.png)
+![spinbox2](../../../docs/Img/spinbox2.png)

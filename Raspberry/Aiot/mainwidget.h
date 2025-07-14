@@ -3,6 +3,9 @@
 
 #include <QWidget>
 #include "tab1devcontrol.h"
+#include "tab2socketclient.h"
+#include "tab3controlpannel.h"
+
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWidget;
@@ -19,6 +22,9 @@ public:
 
 private:
     Ui::MainWidget *ui;
-    Tab1DevControl *pTab1DevControl;
+    Tab1DevControl *pTab1DevControl; // tab1
+    Tab2socketclient *pTab2socketclient; // tab2
+    Tab3ControlPannel *pTab3ControlPannel; // tab3
+    LedKeyDev *keyvalue;
 };
 #endif // MAINWIDGET_H

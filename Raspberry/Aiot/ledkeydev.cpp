@@ -21,7 +21,7 @@ void LedKeyDev::readKeyDataSlot(int)
     int ret = pQFile->read(&keyNo,sizeof(keyNo));
     if(ret > 0)
         emit updateKeyDataSig(int(keyNo));
-    qDebug() << int(keyNo);
+    // qDebug() << int(keyNo);
 }
 void LedKeyDev::writeLedDataSlot(int ledValue)
 {

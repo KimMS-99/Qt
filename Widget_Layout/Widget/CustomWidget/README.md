@@ -37,7 +37,7 @@ connect(button, SIGNAL(clicked()), SIGNAL(widgetClicked()));
 ***main.cpp***를 보면 **QApplication** 클래스의 **quit()** 슬롯을 연결한 후 코드를 빌드해서 실행하보면 앞에서 설명한 것과 같이 코드를 빌드하기 전에 반드시 '**qmake**' 유틸리티를 통해서 **makefile**을 다시 생성해야 한다.
 
 + ***실행 결과***<br>
-![customwidget](https://github.com/user-attachments/assets/c4347684-9786-49ff-90ae-448a05fccd0e)
+![customwidget](../../../docs/Img/customwidget.png)
 
 **Qt connect()**는 2번째 인자 (시그널 함수)의 매개변수와 번째 인자 (슬롯 함수)의 매개변수는 일치하거나, 슬롯이 시그널 매개변수보다 적거나 타입 호환 가능해야 한다.
 + 시그널 매개변수 → 슬롯 매개변수로 자동으로 값이 전달된다고 보면 된다.

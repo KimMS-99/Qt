@@ -20,5 +20,4 @@
 현재 윈도우의 크기가 변결될 때 레이아웃 안에 있는 위젯들의 크기도 함께 변경되게 하려면, **setLayout()** 메소드를 이용해서 해당 레이아웃을 현재 위젯의 레이아웃으로 지정한다.
 
 + **실행 결과**<br>
-<img width="88" height="151" alt="vboxlayout1" src="https://github.com/user-attachments/assets/35fa0544-e994-4781-b61b-7d3bffdb6d3f" />
-<img width="330" height="338" alt="vboxlayout2" src="https://github.com/user-attachments/assets/ecc2b64d-b3f1-4e1e-bab0-998ed96c253d" />
+![vboxlayout1 화면](../../../docs/Img/vboxlayout1.png) ![vboxlayout2 화면](../../../docs/Img/vboxlayout2.png)

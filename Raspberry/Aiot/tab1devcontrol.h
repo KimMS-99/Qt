@@ -4,6 +4,8 @@
 #include <QWidget>
 #include <QTimer>
 #include <QButtonGroup>
+#include <QDial>
+
 #include "ledkeydev.h"
 
 namespace Ui {
@@ -17,6 +19,8 @@ class Tab1DevControl : public QWidget
 public:
     explicit Tab1DevControl(QWidget *parent = nullptr);
     ~Tab1DevControl();
+    QDial *getpDial();
+    LedKeyDev *getpLedKeyDev();
 
 private slots:
     void updateProgressBarLedSlot(int);

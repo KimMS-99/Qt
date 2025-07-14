@@ -11,6 +11,6 @@
 라디오 버튼 객체를 만들고 그룹으로 묶기 위해서는 **QButtonGroup** 클래스를 사용하면 된다. 이 코드를 실행해보면 기존의 버튼이 선택되어 있을 때 다른 버튼을 선택하면 이전 버튼의 선택이 해제되면서 라디오 버튼처럼 동작하는 것을 확인할 수 있다.
 
 + ***실행 결과***<br>
-![radiobutton](https://github.com/user-attachments/assets/bf94e5da-3318-4eb7-86ff-eba8013b5d91)
-![radiobutton2](https://github.com/user-attachments/assets/ebece876-3806-41fc-9aa7-b4d734d7082f)
-![radiobutton3](https://github.com/user-attachments/assets/ae6ef567-d2ed-49f2-9c96-9abe9984e4f6)
+![radiobutton](../../../docs/Img/radiobutton.png)
+![radiobutton2](../../../docs/Img/radiobutton2.png)
+![radiobutton3](../../../docs/Img/radiobutton3.png)

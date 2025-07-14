@@ -6,5 +6,5 @@
 
 **QTextBrowser** 위젯에 문서를 지정할 때는 **QUrl** 클래스를 사용하는데, **QUrl** 클래스는 URL을 지정하기 위해 **Qt**에서 제공하는 클래스이다. ***TextBrowser.cpp***코드를 빌드하고 실행할 때는 ***index.html***파일이 필요하다
 
-+ ***실행 결과***
-<img width="249" height="224" alt="textbrowser" src="https://github.com/user-attachments/assets/dccfbd6c-76c1-4630-be72-3772d2057a5b" />
++ ***실행 결과***<br>
+![TextBrowser](../../../docs/Img/textbrowser.png)

@@ -29,7 +29,13 @@ Tab1DevControl::Tab1DevControl(QWidget *parent)
     for(int i = 0; i < keyCount; i++)
         pQButtonGroup->addButton(pQCheckBox[i], i + 1);
 
+    // connect(pQButtonGroup, SIGNAL(buttonClicked(int)), this, SLOT(updateCheckBoxMouseSlot(int)));
+
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    connect(pQButtonGroup, SIGNAL(idClicked(int)), this, SLOT(updateCheckBoxMouseSlot(int)));
+#else
     connect(pQButtonGroup, SIGNAL(buttonClicked(int)), this, SLOT(updateCheckBoxMouseSlot(int)));
+#endif
 
     connect(pQTimer,SIGNAL(timeout()), this, SLOT(updateDialValueSlot()));
     connect(ui->pDialLed, SIGNAL(valueChanged(int)), pLedKeyDev, SLOT(writeLedDataSlot(int)));
@@ -99,8 +105,7 @@ void Tab1DevControl::updateCheckBoxKeySlot(int keyNo)
             // 라즈베리파이에 버튼을 클릭하면 다이얼과 lcd 타이머를 초기화
             ui->pPBtimerStart->setChecked(false);
             on_pPBtimerStart_clicked(false);
-            ui->pDialLed->setValue(0);
-            // ui->pDialLed->setValue(lcdData); // 버튼 값으로 lcd를 초기화
+            // ui->pDialLed->setValue(0);
         }
         if (keyNo == i+1)
         {
@@ -110,6 +115,7 @@ void Tab1DevControl::updateCheckBoxKeySlot(int keyNo)
                 pQCheckBox[i]->setChecked(true);
         }
     }
+    ui->pDialLed->setValue(lcdData); // 버튼 값으로 lcd를 초기화
 }
 
 void Tab1DevControl::updateCheckBoxMouseSlot(int keyNo)
@@ -124,9 +130,17 @@ void Tab1DevControl::updateCheckBoxMouseSlot(int keyNo)
         // 체크박스를 클릭하면 다이얼과 lcd 타이머를 초기화
         ui->pPBtimerStart->setChecked(false);
         on_pPBtimerStart_clicked(false);
-        ui->pDialLed->setValue(0);
-        // ui->pDialLed->setValue(lcdData); // 버튼 값으로 lcd를 초기화
+        // ui->pDialLed->setValue(0);
     }
+    ui->pDialLed->setValue(lcdData); // 버튼 값으로 lcd를 초기화
 }
 
+QDial* Tab1DevControl::getpDial() // 객체 포인터를 리턴
+{
+    return ui->pDialLed;
+}
 
+LedKeyDev* Tab1DevControl::getpLedKeyDev()
+{
+    return pLedKeyDev;
+}

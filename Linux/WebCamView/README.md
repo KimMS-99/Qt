@@ -25,4 +25,4 @@ ui->Layout->addWidget(p;)
 ```
 
 + **화면**
-<img width="947" height="702" alt="webcam" src="https://github.com/user-attachments/assets/d130578f-1977-448c-a06b-6e0b4559ba2d" />
+![WebCamView 실행 화면](../../docs/Img/WebCamView.png)
