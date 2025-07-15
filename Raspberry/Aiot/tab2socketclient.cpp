@@ -10,7 +10,10 @@ Tab2socketclient::Tab2socketclient(QWidget *parent)
     ui->pPBSend->setEnabled(false);
     pSockClient = new SockClient(this); // 소켓 객체 생성
 
+    pKeyboard = new Keyboard();
+
     connect(pSockClient, SIGNAL(socketRevcDataSig(QString)), this, SLOT(updateRecvDataSlot(QString)));
+    on_pPBserverConnect_toggled(true); // 실행하면 서버 연결창이 나옴
 }
 
 Tab2socketclient::~Tab2socketclient()
@@ -50,13 +53,24 @@ void Tab2socketclient::updateRecvDataSlot(QString strRecvData)
     // [KMS_QT]@LED@0xff -> @KMS_QT@LED@0xff
     strRecvData.replace("[", "@");
     strRecvData.replace("]", "@");
+
     QStringList strList = strRecvData.split("@"); // 문자열로 분리 @KMS_QT@LED@0xff -> ["","KMS_QT", "LED", "0xff"]
-    if(strList[2].indexOf("LED") == 0)
+
+    if(strList[2].indexOf("LED") == 0) // 특정 문자열이 처음 나타나는 위치(인덱스)를 찾고, 없으면 -1을 반환한다.
     {
         bool bFlag;
         int ledNo = strList[3].toInt(&bFlag, 16);
         if(bFlag)
             emit ledWriteSig(ledNo);
+    }
+    else if(strList[2].indexOf("LAMP") == 0 || strList[2].indexOf("PLUG") == 0)
+    {
+        // qDebug() << strRecvData;
+        emit tab3RecvDataSig(strRecvData);
+    }
+    else if(strList[2].indexOf("SENSOR") == 0)
+    {
+        emit Tab4RecvDataSig(strRecvData);
     }
 }
 
@@ -86,3 +100,24 @@ void Tab2socketclient::socketSendToLinux(int keyNo)
 {
     pSockClient->socketWriteDataSlot("[KMS_LIN]KEY@" + QString::number(keyNo));
 }
+
+SockClient * Tab2socketclient::getpSockClient()
+{
+    return pSockClient;
+}
+
+void Tab2socketclient::on_pLErecvid_selectionChanged()
+{
+    QLineEdit *pQLineEdit = (QLineEdit *)sender();
+    pKeyboard->setLineEdit(pQLineEdit);
+    pKeyboard->show();
+}
+
+
+void Tab2socketclient::on_pLEsendData_selectionChanged()
+{
+    QLineEdit *pQLineEdit = (QLineEdit *)sender();
+    pKeyboard->setLineEdit(pQLineEdit);
+    pKeyboard->show();
+}
+

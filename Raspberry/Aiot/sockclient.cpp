@@ -54,7 +54,7 @@ void SockClient::socketErrorSlot()
 void SockClient::socketConnectServerSlot()
 {
     QString strIdPw = "[" + LOGID + ":" + LOGPW + "]";
-    qDebug() << strIdPw;
+    // qDebug() << strIdPw;
     QByteArray byteIdPw = strIdPw.toLocal8Bit(); // QString(유니코드)를 현재 OS의 기본 인코딩(CP949, UTF-8 등)을 사용하는 배열로 변환
     pQTcpSocket->write(byteIdPw);
 }

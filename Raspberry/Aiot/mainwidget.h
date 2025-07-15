@@ -2,9 +2,11 @@
 #define MAINWIDGET_H
 
 #include <QWidget>
+
 #include "tab1devcontrol.h"
 #include "tab2socketclient.h"
 #include "tab3controlpannel.h"
+#include "tab4sensorchart.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -25,6 +27,7 @@ private:
     Tab1DevControl *pTab1DevControl; // tab1
     Tab2socketclient *pTab2socketclient; // tab2
     Tab3ControlPannel *pTab3ControlPannel; // tab3
+    Tab4SensorChart *pTab4SensorChart; // tab4
     LedKeyDev *keyvalue;
 };
 #endif // MAINWIDGET_H

@@ -16,7 +16,7 @@ class SockClient : public QWidget
     QTcpSocket *pQTcpSocket;
     QString SERVERIP = "192.168.0.89"; // 라즈베리파이 주소
     int SERVERPORT = 5000;
-    QString LOGID = "KMS_QT";
+    QString LOGID = "3";
     QString LOGPW = "PASSWD";
 public:
     explicit SockClient(QWidget *parent = nullptr);

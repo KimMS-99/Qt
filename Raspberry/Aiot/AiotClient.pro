@@ -1,4 +1,4 @@
-QT       += core gui network
+QT       += core gui network charts
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -9,27 +9,33 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    keyboard.cpp \
     ledkeydev.cpp \
     main.cpp \
     mainwidget.cpp \
     sockclient.cpp \
     tab1devcontrol.cpp \
     tab2socketclient.cpp \
-    tab3controlpannel.cpp
+    tab3controlpannel.cpp \
+    tab4sensorchart.cpp
 
 HEADERS += \
+    keyboard.h \
     ledkeydev.h \
     mainwidget.h \
     sockclient.h \
     tab1devcontrol.h \
     tab2socketclient.h \
-    tab3controlpannel.h
+    tab3controlpannel.h \
+    tab4sensorchart.h
 
 FORMS += \
+    keyboard.ui \
     mainwidget.ui \
     tab1devcontrol.ui \
     tab2socketclient.ui \
-    tab3controlpannel.ui
+    tab3controlpannel.ui \
+    tab4sensorchart.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

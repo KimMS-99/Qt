@@ -1,4 +1,4 @@
-# Intel_Edge_AI_SW-Qt
+# Qt
 [Qt 공식문서](https://doc.qt.io/qt-6.8/index.html)
 + Qt 6.8 버전의 기능/클래스 설명
 + 개발자 가이드 / 튜토리얼

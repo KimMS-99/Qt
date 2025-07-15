@@ -23,7 +23,7 @@
    <item>
     <widget class="QTabWidget" name="pTabWidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>3</number>
      </property>
      <widget class="QWidget" name="pTab1">
       <attribute name="title">
@@ -38,6 +38,11 @@
      <widget class="QWidget" name="pTab3">
       <attribute name="title">
        <string>Tab 3</string>
+      </attribute>
+     </widget>
+     <widget class="QWidget" name="pTab4">
+      <attribute name="title">
+       <string>Tab 4</string>
       </attribute>
      </widget>
     </widget>
