@@ -2,12 +2,23 @@
 #define TAB4SENSORCHART_H
 
 #include <QWidget>
+#include <QTime>
+#include <QDate>
+#include <QDebug>
+
+#if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
 #include <QChartView>
 #include <QLineSeries>
-#include <QDateTimeAxis> // 가로축으로 날짜 시간을 사용
-#include <QDate>
-#include <QTime>
-#include <QDebug>
+#include <QDateTimeAxis>
+#include <QValueAxis>
+#else
+#include <QtCharts/QChartView>
+#include <QtCharts/QChart>
+#include <QtCharts/QLineSeries>
+#include <QtCharts/QDateTimeAxis>
+#include <QtCharts/QValueAxis>
+QT_CHARTS_USE_NAMESPACE
+#endif
 
 namespace Ui {
 class Tab4SensorChart;

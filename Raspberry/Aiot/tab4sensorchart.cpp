@@ -104,6 +104,8 @@ void Tab4SensorChart::Tab4RecvDataSlot(QString recvData)
 void Tab4SensorChart::on_pPBClearChart_clicked() // 그래프 초기화 및 시간 갱신
 {
     illuline->clear();
+    temp->clear();
+    humi->clear();
     updateLastDateTime(0);
 }
 
