@@ -1,4 +1,4 @@
-QT       += core gui network charts
+QT       += core gui network charts sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -17,7 +17,8 @@ SOURCES += \
     tab1devcontrol.cpp \
     tab2socketclient.cpp \
     tab3controlpannel.cpp \
-    tab4sensorchart.cpp
+    tab4sensorchart.cpp \
+    tab5sensordatabase.cpp
 
 HEADERS += \
     keyboard.h \
@@ -27,7 +28,8 @@ HEADERS += \
     tab1devcontrol.h \
     tab2socketclient.h \
     tab3controlpannel.h \
-    tab4sensorchart.h
+    tab4sensorchart.h \
+    tab5sensordatabase.h
 
 FORMS += \
     keyboard.ui \
@@ -35,7 +37,8 @@ FORMS += \
     tab1devcontrol.ui \
     tab2socketclient.ui \
     tab3controlpannel.ui \
-    tab4sensorchart.ui
+    tab4sensorchart.ui \
+    tab5sensordatabase.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

@@ -36,7 +36,7 @@ Tab4SensorChart::Tab4SensorChart(QWidget *parent)
     pQChart->addSeries(illuline);
     pQChart->addSeries(temp);
     pQChart->addSeries(humi);
-    pQChart->createDefaultAxes();
+    pQChart->createDefaultAxes(); // 좌표 디폴트
     pQChart->axes(Qt::Vertical).constFirst()->setRange(0, 100);
 
     pQChartView = new QChartView(pQChart);

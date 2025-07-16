@@ -39,6 +39,7 @@ signals:
     void ledWriteSig(int);
     void tab3RecvDataSig(QString);
     void Tab4RecvDataSig(QString);
+    void Tab5RecvDataSig(QString);
 
 private:
     Ui::Tab2socketclient *ui;

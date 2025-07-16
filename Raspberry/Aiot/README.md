@@ -27,3 +27,4 @@ Qt 애플리케이션을 실행하기 전에, 타겟 보드(라즈베리파이)�
 [`tab2socketclient`](../../docs/Markdown/tab2.md) 클래스<br>
 [`tab3controlpannel`](../../docs/Markdown/tab3.md) 클래스 <br>
 [`tab4linechart`](../../docs/Markdown/tab4.md) 클래스 <br>
+[`tab5sensordatabase`](../../docs/Markdown/tab5.md) 클래스 <br>

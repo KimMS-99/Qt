@@ -71,6 +71,7 @@ void Tab2socketclient::updateRecvDataSlot(QString strRecvData)
     else if(strList[2].indexOf("SENSOR") == 0)
     {
         emit Tab4RecvDataSig(strRecvData);
+        emit Tab5RecvDataSig(strRecvData);
     }
 }
 

@@ -14,10 +14,10 @@ EQ            = =
 
 CC            = gcc
 CXX           = g++
-DEFINES       = -DQT_NO_DEBUG -DQT_CHARTS_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB
+DEFINES       = -DQT_NO_DEBUG -DQT_CHARTS_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_SQL_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -O2 -Wall -Wextra -D_REENTRANT -fPIC $(DEFINES)
 CXXFLAGS      = -pipe -O2 -std=gnu++1z -Wall -Wextra -D_REENTRANT -fPIC $(DEFINES)
-INCPATH       = -I. -I/usr/include/arm-linux-gnueabihf/qt5 -I/usr/include/arm-linux-gnueabihf/qt5/QtCharts -I/usr/include/arm-linux-gnueabihf/qt5/QtWidgets -I/usr/include/arm-linux-gnueabihf/qt5/QtGui -I/usr/include/arm-linux-gnueabihf/qt5/QtNetwork -I/usr/include/arm-linux-gnueabihf/qt5/QtCore -I. -I. -I/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/linux-g++
+INCPATH       = -I. -I/usr/include/arm-linux-gnueabihf/qt5 -I/usr/include/arm-linux-gnueabihf/qt5/QtCharts -I/usr/include/arm-linux-gnueabihf/qt5/QtWidgets -I/usr/include/arm-linux-gnueabihf/qt5/QtGui -I/usr/include/arm-linux-gnueabihf/qt5/QtNetwork -I/usr/include/arm-linux-gnueabihf/qt5/QtSql -I/usr/include/arm-linux-gnueabihf/qt5/QtCore -I. -I. -I/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/linux-g++
 QMAKE         = /usr/lib/qt5/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -40,7 +40,7 @@ DISTNAME      = AiotClient1.0.0
 DISTDIR = /srv/samba/Aiot/.tmp/AiotClient1.0.0
 LINK          = g++
 LFLAGS        = -Wl,-O1
-LIBS          = $(SUBLIBS) /usr/lib/arm-linux-gnueabihf/libQt5Charts.so /usr/lib/arm-linux-gnueabihf/libQt5Widgets.so /usr/lib/arm-linux-gnueabihf/libQt5Gui.so /usr/lib/arm-linux-gnueabihf/libQt5Network.so /usr/lib/arm-linux-gnueabihf/libQt5Core.so -lGLESv2 -lpthread -latomic   
+LIBS          = $(SUBLIBS) /usr/lib/arm-linux-gnueabihf/libQt5Charts.so /usr/lib/arm-linux-gnueabihf/libQt5Widgets.so /usr/lib/arm-linux-gnueabihf/libQt5Gui.so /usr/lib/arm-linux-gnueabihf/libQt5Network.so /usr/lib/arm-linux-gnueabihf/libQt5Sql.so /usr/lib/arm-linux-gnueabihf/libQt5Core.so -lGLESv2 -lpthread -latomic   
 AR            = ar cqs
 RANLIB        = 
 SED           = sed
@@ -60,7 +60,8 @@ SOURCES       = keyboard.cpp \
 		tab1devcontrol.cpp \
 		tab2socketclient.cpp \
 		tab3controlpannel.cpp \
-		tab4sensorchart.cpp qrc_Images.cpp \
+		tab4sensorchart.cpp \
+		tab5sensordatabase.cpp qrc_Images.cpp \
 		moc_keyboard.cpp \
 		moc_ledkeydev.cpp \
 		moc_mainwidget.cpp \
@@ -68,7 +69,8 @@ SOURCES       = keyboard.cpp \
 		moc_tab1devcontrol.cpp \
 		moc_tab2socketclient.cpp \
 		moc_tab3controlpannel.cpp \
-		moc_tab4sensorchart.cpp
+		moc_tab4sensorchart.cpp \
+		moc_tab5sensordatabase.cpp
 OBJECTS       = keyboard.o \
 		ledkeydev.o \
 		main.o \
@@ -78,6 +80,7 @@ OBJECTS       = keyboard.o \
 		tab2socketclient.o \
 		tab3controlpannel.o \
 		tab4sensorchart.o \
+		tab5sensordatabase.o \
 		qrc_Images.o \
 		moc_keyboard.o \
 		moc_ledkeydev.o \
@@ -86,7 +89,8 @@ OBJECTS       = keyboard.o \
 		moc_tab1devcontrol.o \
 		moc_tab2socketclient.o \
 		moc_tab3controlpannel.o \
-		moc_tab4sensorchart.o
+		moc_tab4sensorchart.o \
+		moc_tab5sensordatabase.o
 DIST          = /usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/common/unix.conf \
 		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/common/linux.conf \
@@ -170,7 +174,8 @@ DIST          = /usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/spec_pre.prf \
 		tab1devcontrol.h \
 		tab2socketclient.h \
 		tab3controlpannel.h \
-		tab4sensorchart.h keyboard.cpp \
+		tab4sensorchart.h \
+		tab5sensordatabase.h keyboard.cpp \
 		ledkeydev.cpp \
 		main.cpp \
 		mainwidget.cpp \
@@ -178,7 +183,8 @@ DIST          = /usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/spec_pre.prf \
 		tab1devcontrol.cpp \
 		tab2socketclient.cpp \
 		tab3controlpannel.cpp \
-		tab4sensorchart.cpp
+		tab4sensorchart.cpp \
+		tab5sensordatabase.cpp
 QMAKE_TARGET  = AiotClient
 DESTDIR       = 
 TARGET        = AiotClient
@@ -187,7 +193,7 @@ TARGET        = AiotClient
 first: all
 ####### Build rules
 
-AiotClient: ui_keyboard.h ui_mainwidget.h ui_tab1devcontrol.h ui_tab2socketclient.h ui_tab3controlpannel.h ui_tab4sensorchart.h $(OBJECTS)  
+AiotClient: ui_keyboard.h ui_mainwidget.h ui_tab1devcontrol.h ui_tab2socketclient.h ui_tab3controlpannel.h ui_tab4sensorchart.h ui_tab5sensordatabase.h $(OBJECTS)  
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
 Makefile: AiotClient.pro /usr/lib/arm-linux-gnueabihf/qt5/mkspecs/linux-g++/qmake.conf /usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/spec_pre.prf \
@@ -363,9 +369,9 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents Images.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents keyboard.h ledkeydev.h mainwidget.h sockclient.h tab1devcontrol.h tab2socketclient.h tab3controlpannel.h tab4sensorchart.h $(DISTDIR)/
-	$(COPY_FILE) --parents keyboard.cpp ledkeydev.cpp main.cpp mainwidget.cpp sockclient.cpp tab1devcontrol.cpp tab2socketclient.cpp tab3controlpannel.cpp tab4sensorchart.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents keyboard.ui mainwidget.ui tab1devcontrol.ui tab2socketclient.ui tab3controlpannel.ui tab4sensorchart.ui $(DISTDIR)/
+	$(COPY_FILE) --parents keyboard.h ledkeydev.h mainwidget.h sockclient.h tab1devcontrol.h tab2socketclient.h tab3controlpannel.h tab4sensorchart.h tab5sensordatabase.h $(DISTDIR)/
+	$(COPY_FILE) --parents keyboard.cpp ledkeydev.cpp main.cpp mainwidget.cpp sockclient.cpp tab1devcontrol.cpp tab2socketclient.cpp tab3controlpannel.cpp tab4sensorchart.cpp tab5sensordatabase.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents keyboard.ui mainwidget.ui tab1devcontrol.ui tab2socketclient.ui tab3controlpannel.ui tab4sensorchart.ui tab5sensordatabase.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -409,18 +415,18 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/data/dummy.cpp
 	g++ -pipe -O2 -std=gnu++1z -Wall -Wextra -dM -E -o moc_predefs.h /usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_keyboard.cpp moc_ledkeydev.cpp moc_mainwidget.cpp moc_sockclient.cpp moc_tab1devcontrol.cpp moc_tab2socketclient.cpp moc_tab3controlpannel.cpp moc_tab4sensorchart.cpp
+compiler_moc_header_make_all: moc_keyboard.cpp moc_ledkeydev.cpp moc_mainwidget.cpp moc_sockclient.cpp moc_tab1devcontrol.cpp moc_tab2socketclient.cpp moc_tab3controlpannel.cpp moc_tab4sensorchart.cpp moc_tab5sensordatabase.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_keyboard.cpp moc_ledkeydev.cpp moc_mainwidget.cpp moc_sockclient.cpp moc_tab1devcontrol.cpp moc_tab2socketclient.cpp moc_tab3controlpannel.cpp moc_tab4sensorchart.cpp
+	-$(DEL_FILE) moc_keyboard.cpp moc_ledkeydev.cpp moc_mainwidget.cpp moc_sockclient.cpp moc_tab1devcontrol.cpp moc_tab2socketclient.cpp moc_tab3controlpannel.cpp moc_tab4sensorchart.cpp moc_tab5sensordatabase.cpp
 moc_keyboard.cpp: keyboard.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /srv/samba/Aiot/moc_predefs.h -I/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/linux-g++ -I/srv/samba/Aiot -I/usr/include/arm-linux-gnueabihf/qt5 -I/usr/include/arm-linux-gnueabihf/qt5/QtCharts -I/usr/include/arm-linux-gnueabihf/qt5/QtWidgets -I/usr/include/arm-linux-gnueabihf/qt5/QtGui -I/usr/include/arm-linux-gnueabihf/qt5/QtNetwork -I/usr/include/arm-linux-gnueabihf/qt5/QtCore -I/usr/include/c++/12 -I/usr/include/arm-linux-gnueabihf/c++/12 -I/usr/include/c++/12/backward -I/usr/lib/gcc/arm-linux-gnueabihf/12/include -I/usr/local/include -I/usr/include/arm-linux-gnueabihf -I/usr/include keyboard.h -o moc_keyboard.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /srv/samba/Aiot/moc_predefs.h -I/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/linux-g++ -I/srv/samba/Aiot -I/usr/include/arm-linux-gnueabihf/qt5 -I/usr/include/arm-linux-gnueabihf/qt5/QtCharts -I/usr/include/arm-linux-gnueabihf/qt5/QtWidgets -I/usr/include/arm-linux-gnueabihf/qt5/QtGui -I/usr/include/arm-linux-gnueabihf/qt5/QtNetwork -I/usr/include/arm-linux-gnueabihf/qt5/QtSql -I/usr/include/arm-linux-gnueabihf/qt5/QtCore -I/usr/include/c++/12 -I/usr/include/arm-linux-gnueabihf/c++/12 -I/usr/include/c++/12/backward -I/usr/lib/gcc/arm-linux-gnueabihf/12/include -I/usr/local/include -I/usr/include/arm-linux-gnueabihf -I/usr/include keyboard.h -o moc_keyboard.cpp
 
 moc_ledkeydev.cpp: ledkeydev.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /srv/samba/Aiot/moc_predefs.h -I/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/linux-g++ -I/srv/samba/Aiot -I/usr/include/arm-linux-gnueabihf/qt5 -I/usr/include/arm-linux-gnueabihf/qt5/QtCharts -I/usr/include/arm-linux-gnueabihf/qt5/QtWidgets -I/usr/include/arm-linux-gnueabihf/qt5/QtGui -I/usr/include/arm-linux-gnueabihf/qt5/QtNetwork -I/usr/include/arm-linux-gnueabihf/qt5/QtCore -I/usr/include/c++/12 -I/usr/include/arm-linux-gnueabihf/c++/12 -I/usr/include/c++/12/backward -I/usr/lib/gcc/arm-linux-gnueabihf/12/include -I/usr/local/include -I/usr/include/arm-linux-gnueabihf -I/usr/include ledkeydev.h -o moc_ledkeydev.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /srv/samba/Aiot/moc_predefs.h -I/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/linux-g++ -I/srv/samba/Aiot -I/usr/include/arm-linux-gnueabihf/qt5 -I/usr/include/arm-linux-gnueabihf/qt5/QtCharts -I/usr/include/arm-linux-gnueabihf/qt5/QtWidgets -I/usr/include/arm-linux-gnueabihf/qt5/QtGui -I/usr/include/arm-linux-gnueabihf/qt5/QtNetwork -I/usr/include/arm-linux-gnueabihf/qt5/QtSql -I/usr/include/arm-linux-gnueabihf/qt5/QtCore -I/usr/include/c++/12 -I/usr/include/arm-linux-gnueabihf/c++/12 -I/usr/include/c++/12/backward -I/usr/lib/gcc/arm-linux-gnueabihf/12/include -I/usr/local/include -I/usr/include/arm-linux-gnueabihf -I/usr/include ledkeydev.h -o moc_ledkeydev.cpp
 
 moc_mainwidget.cpp: mainwidget.h \
 		tab1devcontrol.h \
@@ -430,45 +436,51 @@ moc_mainwidget.cpp: mainwidget.h \
 		sockclient.h \
 		tab3controlpannel.h \
 		tab4sensorchart.h \
+		tab5sensordatabase.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /srv/samba/Aiot/moc_predefs.h -I/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/linux-g++ -I/srv/samba/Aiot -I/usr/include/arm-linux-gnueabihf/qt5 -I/usr/include/arm-linux-gnueabihf/qt5/QtCharts -I/usr/include/arm-linux-gnueabihf/qt5/QtWidgets -I/usr/include/arm-linux-gnueabihf/qt5/QtGui -I/usr/include/arm-linux-gnueabihf/qt5/QtNetwork -I/usr/include/arm-linux-gnueabihf/qt5/QtCore -I/usr/include/c++/12 -I/usr/include/arm-linux-gnueabihf/c++/12 -I/usr/include/c++/12/backward -I/usr/lib/gcc/arm-linux-gnueabihf/12/include -I/usr/local/include -I/usr/include/arm-linux-gnueabihf -I/usr/include mainwidget.h -o moc_mainwidget.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /srv/samba/Aiot/moc_predefs.h -I/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/linux-g++ -I/srv/samba/Aiot -I/usr/include/arm-linux-gnueabihf/qt5 -I/usr/include/arm-linux-gnueabihf/qt5/QtCharts -I/usr/include/arm-linux-gnueabihf/qt5/QtWidgets -I/usr/include/arm-linux-gnueabihf/qt5/QtGui -I/usr/include/arm-linux-gnueabihf/qt5/QtNetwork -I/usr/include/arm-linux-gnueabihf/qt5/QtSql -I/usr/include/arm-linux-gnueabihf/qt5/QtCore -I/usr/include/c++/12 -I/usr/include/arm-linux-gnueabihf/c++/12 -I/usr/include/c++/12/backward -I/usr/lib/gcc/arm-linux-gnueabihf/12/include -I/usr/local/include -I/usr/include/arm-linux-gnueabihf -I/usr/include mainwidget.h -o moc_mainwidget.cpp
 
 moc_sockclient.cpp: sockclient.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /srv/samba/Aiot/moc_predefs.h -I/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/linux-g++ -I/srv/samba/Aiot -I/usr/include/arm-linux-gnueabihf/qt5 -I/usr/include/arm-linux-gnueabihf/qt5/QtCharts -I/usr/include/arm-linux-gnueabihf/qt5/QtWidgets -I/usr/include/arm-linux-gnueabihf/qt5/QtGui -I/usr/include/arm-linux-gnueabihf/qt5/QtNetwork -I/usr/include/arm-linux-gnueabihf/qt5/QtCore -I/usr/include/c++/12 -I/usr/include/arm-linux-gnueabihf/c++/12 -I/usr/include/c++/12/backward -I/usr/lib/gcc/arm-linux-gnueabihf/12/include -I/usr/local/include -I/usr/include/arm-linux-gnueabihf -I/usr/include sockclient.h -o moc_sockclient.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /srv/samba/Aiot/moc_predefs.h -I/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/linux-g++ -I/srv/samba/Aiot -I/usr/include/arm-linux-gnueabihf/qt5 -I/usr/include/arm-linux-gnueabihf/qt5/QtCharts -I/usr/include/arm-linux-gnueabihf/qt5/QtWidgets -I/usr/include/arm-linux-gnueabihf/qt5/QtGui -I/usr/include/arm-linux-gnueabihf/qt5/QtNetwork -I/usr/include/arm-linux-gnueabihf/qt5/QtSql -I/usr/include/arm-linux-gnueabihf/qt5/QtCore -I/usr/include/c++/12 -I/usr/include/arm-linux-gnueabihf/c++/12 -I/usr/include/c++/12/backward -I/usr/lib/gcc/arm-linux-gnueabihf/12/include -I/usr/local/include -I/usr/include/arm-linux-gnueabihf -I/usr/include sockclient.h -o moc_sockclient.cpp
 
 moc_tab1devcontrol.cpp: tab1devcontrol.h \
 		ledkeydev.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /srv/samba/Aiot/moc_predefs.h -I/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/linux-g++ -I/srv/samba/Aiot -I/usr/include/arm-linux-gnueabihf/qt5 -I/usr/include/arm-linux-gnueabihf/qt5/QtCharts -I/usr/include/arm-linux-gnueabihf/qt5/QtWidgets -I/usr/include/arm-linux-gnueabihf/qt5/QtGui -I/usr/include/arm-linux-gnueabihf/qt5/QtNetwork -I/usr/include/arm-linux-gnueabihf/qt5/QtCore -I/usr/include/c++/12 -I/usr/include/arm-linux-gnueabihf/c++/12 -I/usr/include/c++/12/backward -I/usr/lib/gcc/arm-linux-gnueabihf/12/include -I/usr/local/include -I/usr/include/arm-linux-gnueabihf -I/usr/include tab1devcontrol.h -o moc_tab1devcontrol.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /srv/samba/Aiot/moc_predefs.h -I/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/linux-g++ -I/srv/samba/Aiot -I/usr/include/arm-linux-gnueabihf/qt5 -I/usr/include/arm-linux-gnueabihf/qt5/QtCharts -I/usr/include/arm-linux-gnueabihf/qt5/QtWidgets -I/usr/include/arm-linux-gnueabihf/qt5/QtGui -I/usr/include/arm-linux-gnueabihf/qt5/QtNetwork -I/usr/include/arm-linux-gnueabihf/qt5/QtSql -I/usr/include/arm-linux-gnueabihf/qt5/QtCore -I/usr/include/c++/12 -I/usr/include/arm-linux-gnueabihf/c++/12 -I/usr/include/c++/12/backward -I/usr/lib/gcc/arm-linux-gnueabihf/12/include -I/usr/local/include -I/usr/include/arm-linux-gnueabihf -I/usr/include tab1devcontrol.h -o moc_tab1devcontrol.cpp
 
 moc_tab2socketclient.cpp: tab2socketclient.h \
 		keyboard.h \
 		sockclient.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /srv/samba/Aiot/moc_predefs.h -I/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/linux-g++ -I/srv/samba/Aiot -I/usr/include/arm-linux-gnueabihf/qt5 -I/usr/include/arm-linux-gnueabihf/qt5/QtCharts -I/usr/include/arm-linux-gnueabihf/qt5/QtWidgets -I/usr/include/arm-linux-gnueabihf/qt5/QtGui -I/usr/include/arm-linux-gnueabihf/qt5/QtNetwork -I/usr/include/arm-linux-gnueabihf/qt5/QtCore -I/usr/include/c++/12 -I/usr/include/arm-linux-gnueabihf/c++/12 -I/usr/include/c++/12/backward -I/usr/lib/gcc/arm-linux-gnueabihf/12/include -I/usr/local/include -I/usr/include/arm-linux-gnueabihf -I/usr/include tab2socketclient.h -o moc_tab2socketclient.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /srv/samba/Aiot/moc_predefs.h -I/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/linux-g++ -I/srv/samba/Aiot -I/usr/include/arm-linux-gnueabihf/qt5 -I/usr/include/arm-linux-gnueabihf/qt5/QtCharts -I/usr/include/arm-linux-gnueabihf/qt5/QtWidgets -I/usr/include/arm-linux-gnueabihf/qt5/QtGui -I/usr/include/arm-linux-gnueabihf/qt5/QtNetwork -I/usr/include/arm-linux-gnueabihf/qt5/QtSql -I/usr/include/arm-linux-gnueabihf/qt5/QtCore -I/usr/include/c++/12 -I/usr/include/arm-linux-gnueabihf/c++/12 -I/usr/include/c++/12/backward -I/usr/lib/gcc/arm-linux-gnueabihf/12/include -I/usr/local/include -I/usr/include/arm-linux-gnueabihf -I/usr/include tab2socketclient.h -o moc_tab2socketclient.cpp
 
 moc_tab3controlpannel.cpp: tab3controlpannel.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /srv/samba/Aiot/moc_predefs.h -I/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/linux-g++ -I/srv/samba/Aiot -I/usr/include/arm-linux-gnueabihf/qt5 -I/usr/include/arm-linux-gnueabihf/qt5/QtCharts -I/usr/include/arm-linux-gnueabihf/qt5/QtWidgets -I/usr/include/arm-linux-gnueabihf/qt5/QtGui -I/usr/include/arm-linux-gnueabihf/qt5/QtNetwork -I/usr/include/arm-linux-gnueabihf/qt5/QtCore -I/usr/include/c++/12 -I/usr/include/arm-linux-gnueabihf/c++/12 -I/usr/include/c++/12/backward -I/usr/lib/gcc/arm-linux-gnueabihf/12/include -I/usr/local/include -I/usr/include/arm-linux-gnueabihf -I/usr/include tab3controlpannel.h -o moc_tab3controlpannel.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /srv/samba/Aiot/moc_predefs.h -I/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/linux-g++ -I/srv/samba/Aiot -I/usr/include/arm-linux-gnueabihf/qt5 -I/usr/include/arm-linux-gnueabihf/qt5/QtCharts -I/usr/include/arm-linux-gnueabihf/qt5/QtWidgets -I/usr/include/arm-linux-gnueabihf/qt5/QtGui -I/usr/include/arm-linux-gnueabihf/qt5/QtNetwork -I/usr/include/arm-linux-gnueabihf/qt5/QtSql -I/usr/include/arm-linux-gnueabihf/qt5/QtCore -I/usr/include/c++/12 -I/usr/include/arm-linux-gnueabihf/c++/12 -I/usr/include/c++/12/backward -I/usr/lib/gcc/arm-linux-gnueabihf/12/include -I/usr/local/include -I/usr/include/arm-linux-gnueabihf -I/usr/include tab3controlpannel.h -o moc_tab3controlpannel.cpp
 
 moc_tab4sensorchart.cpp: tab4sensorchart.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /srv/samba/Aiot/moc_predefs.h -I/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/linux-g++ -I/srv/samba/Aiot -I/usr/include/arm-linux-gnueabihf/qt5 -I/usr/include/arm-linux-gnueabihf/qt5/QtCharts -I/usr/include/arm-linux-gnueabihf/qt5/QtWidgets -I/usr/include/arm-linux-gnueabihf/qt5/QtGui -I/usr/include/arm-linux-gnueabihf/qt5/QtNetwork -I/usr/include/arm-linux-gnueabihf/qt5/QtCore -I/usr/include/c++/12 -I/usr/include/arm-linux-gnueabihf/c++/12 -I/usr/include/c++/12/backward -I/usr/lib/gcc/arm-linux-gnueabihf/12/include -I/usr/local/include -I/usr/include/arm-linux-gnueabihf -I/usr/include tab4sensorchart.h -o moc_tab4sensorchart.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /srv/samba/Aiot/moc_predefs.h -I/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/linux-g++ -I/srv/samba/Aiot -I/usr/include/arm-linux-gnueabihf/qt5 -I/usr/include/arm-linux-gnueabihf/qt5/QtCharts -I/usr/include/arm-linux-gnueabihf/qt5/QtWidgets -I/usr/include/arm-linux-gnueabihf/qt5/QtGui -I/usr/include/arm-linux-gnueabihf/qt5/QtNetwork -I/usr/include/arm-linux-gnueabihf/qt5/QtSql -I/usr/include/arm-linux-gnueabihf/qt5/QtCore -I/usr/include/c++/12 -I/usr/include/arm-linux-gnueabihf/c++/12 -I/usr/include/c++/12/backward -I/usr/lib/gcc/arm-linux-gnueabihf/12/include -I/usr/local/include -I/usr/include/arm-linux-gnueabihf -I/usr/include tab4sensorchart.h -o moc_tab4sensorchart.cpp
+
+moc_tab5sensordatabase.cpp: tab5sensordatabase.h \
+		moc_predefs.h \
+		/usr/lib/qt5/bin/moc
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /srv/samba/Aiot/moc_predefs.h -I/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/linux-g++ -I/srv/samba/Aiot -I/usr/include/arm-linux-gnueabihf/qt5 -I/usr/include/arm-linux-gnueabihf/qt5/QtCharts -I/usr/include/arm-linux-gnueabihf/qt5/QtWidgets -I/usr/include/arm-linux-gnueabihf/qt5/QtGui -I/usr/include/arm-linux-gnueabihf/qt5/QtNetwork -I/usr/include/arm-linux-gnueabihf/qt5/QtSql -I/usr/include/arm-linux-gnueabihf/qt5/QtCore -I/usr/include/c++/12 -I/usr/include/arm-linux-gnueabihf/c++/12 -I/usr/include/c++/12/backward -I/usr/lib/gcc/arm-linux-gnueabihf/12/include -I/usr/local/include -I/usr/include/arm-linux-gnueabihf -I/usr/include tab5sensordatabase.h -o moc_tab5sensordatabase.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_keyboard.h ui_mainwidget.h ui_tab1devcontrol.h ui_tab2socketclient.h ui_tab3controlpannel.h ui_tab4sensorchart.h
+compiler_uic_make_all: ui_keyboard.h ui_mainwidget.h ui_tab1devcontrol.h ui_tab2socketclient.h ui_tab3controlpannel.h ui_tab4sensorchart.h ui_tab5sensordatabase.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_keyboard.h ui_mainwidget.h ui_tab1devcontrol.h ui_tab2socketclient.h ui_tab3controlpannel.h ui_tab4sensorchart.h
+	-$(DEL_FILE) ui_keyboard.h ui_mainwidget.h ui_tab1devcontrol.h ui_tab2socketclient.h ui_tab3controlpannel.h ui_tab4sensorchart.h ui_tab5sensordatabase.h
 ui_keyboard.h: keyboard.ui \
 		/usr/lib/qt5/bin/uic
 	/usr/lib/qt5/bin/uic keyboard.ui -o ui_keyboard.h
@@ -492,6 +504,10 @@ ui_tab3controlpannel.h: tab3controlpannel.ui \
 ui_tab4sensorchart.h: tab4sensorchart.ui \
 		/usr/lib/qt5/bin/uic
 	/usr/lib/qt5/bin/uic tab4sensorchart.ui -o ui_tab4sensorchart.h
+
+ui_tab5sensordatabase.h: tab5sensordatabase.ui \
+		/usr/lib/qt5/bin/uic
+	/usr/lib/qt5/bin/uic tab5sensordatabase.ui -o ui_tab5sensordatabase.h
 
 compiler_yacc_decl_make_all:
 compiler_yacc_decl_clean:
@@ -517,7 +533,8 @@ main.o: main.cpp mainwidget.h \
 		keyboard.h \
 		sockclient.h \
 		tab3controlpannel.h \
-		tab4sensorchart.h
+		tab4sensorchart.h \
+		tab5sensordatabase.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
 
 mainwidget.o: mainwidget.cpp mainwidget.h \
@@ -528,6 +545,7 @@ mainwidget.o: mainwidget.cpp mainwidget.h \
 		sockclient.h \
 		tab3controlpannel.h \
 		tab4sensorchart.h \
+		tab5sensordatabase.h \
 		ui_mainwidget.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwidget.o mainwidget.cpp
 
@@ -552,6 +570,10 @@ tab3controlpannel.o: tab3controlpannel.cpp tab3controlpannel.h \
 tab4sensorchart.o: tab4sensorchart.cpp tab4sensorchart.h \
 		ui_tab4sensorchart.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tab4sensorchart.o tab4sensorchart.cpp
+
+tab5sensordatabase.o: tab5sensordatabase.cpp tab5sensordatabase.h \
+		ui_tab5sensordatabase.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tab5sensordatabase.o tab5sensordatabase.cpp
 
 qrc_Images.o: qrc_Images.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_Images.o qrc_Images.cpp
@@ -579,6 +601,9 @@ moc_tab3controlpannel.o: moc_tab3controlpannel.cpp
 
 moc_tab4sensorchart.o: moc_tab4sensorchart.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_tab4sensorchart.o moc_tab4sensorchart.cpp
+
+moc_tab5sensordatabase.o: moc_tab5sensordatabase.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_tab5sensordatabase.o moc_tab5sensordatabase.cpp
 
 ####### Install
 

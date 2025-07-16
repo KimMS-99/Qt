@@ -7,6 +7,7 @@
 #include "tab2socketclient.h"
 #include "tab3controlpannel.h"
 #include "tab4sensorchart.h"
+#include "tab5sensordatabase.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -28,6 +29,7 @@ private:
     Tab2socketclient *pTab2socketclient; // tab2
     Tab3ControlPannel *pTab3ControlPannel; // tab3
     Tab4SensorChart *pTab4SensorChart; // tab4
+    Tab5sensordatabase *pTab5sensordatabase; // tab5
     LedKeyDev *keyvalue;
 };
 #endif // MAINWIDGET_H
