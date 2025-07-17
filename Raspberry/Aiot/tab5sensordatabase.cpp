@@ -115,6 +115,18 @@ void Tab5sensordatabase::on_pushButton_clicked()
     illuline->clear();
     temp->clear();
     humi->clear();
+#if PROFESSOR_CODE
+    if(pQTableWidgetItemId != nullptr)
+    {
+        delete [] pQTableWidgetItemId;
+        delete [] pQTableWidgetItemDate;
+        delete [] pQTableWidgetItemIllu;
+
+        pQTableWidgetItemId = nullptr;
+        pQTableWidgetItemDate = nullptr;
+        pQTableWidgetItemIllu = nullptr;
+    }
+#endif
     ui->pTBsensor->setRowCount(0); // 모든 행 삭제
 }
 
@@ -123,8 +135,10 @@ void Tab5sensordatabase::on_pPBsearchDB_clicked()
     QDateTime fromDateTime = ui->pDateTimeEditFrom->dateTime();
     QDateTime toDateTime = ui->pDateTimeEditTo->dateTime();
 
+#if !PROFESSOR_CODE
     ui->pTBsensor->clearContents(); // 셀에 있는 QTableWidgetItem을 전부 delete함, 행/열은 그대로 유지된다.
     on_pushButton_clicked();
+#endif
 
     QString strQuery = "select * from sensor_tb where '" + fromDateTime.toString("yyyy/MM/dd hh:mm:ss") + "' <= date and date <= '" + toDateTime.toString("yyyy/MM/dd hh:mm:ss") + "'";
     QSqlQuery sqlQuery;
@@ -137,45 +151,48 @@ void Tab5sensordatabase::on_pPBsearchDB_clicked()
         QDateTime lastDateTime;
 
 #if PROFESSOR_CODE
-        if(sqlQuery.exec(strQuery))
+
+        illuline->clear();
+        temp->clear();
+        humi->clear();
+
+        while(sqlQuery.next())
+            rowCount++;
+
+        if(pQTableWidgetItemId != nullptr)
         {
-            int rowCount=0;
-            qDebug() << "Select Query Ok";
-            while(sqlQuery.next())
-                rowCount++;
+            delete [] pQTableWidgetItemId;
+            delete [] pQTableWidgetItemDate;
+            delete [] pQTableWidgetItemIllu;
 
-            // if(pQTableWidgetItemId != nullptr)
-            // {
-            //     delete [] pQTableWidgetItemId;
-            //     delete [] pQTableWidgetItemDate;
-            //     delete [] pQTableWidgetItemIllu;
-            // }
+            pQTableWidgetItemId = nullptr;
+            pQTableWidgetItemDate = nullptr;
+            pQTableWidgetItemIllu = nullptr;
+        }
 
-            pQTableWidgetItemId = new QTableWidgetItem[rowCount];
-            pQTableWidgetItemDate = new QTableWidgetItem[rowCount];
-            pQTableWidgetItemIllu = new QTableWidgetItem[rowCount];
+        ui->pTBsensor->setRowCount(0);
 
-            rowCount=0;
-            sqlQuery.first();
-            while(sqlQuery.next())
-            {
-                ui->pTBsensor->setRowCount(rowCount+1);
+        pQTableWidgetItemId = new QTableWidgetItem[rowCount];
+        pQTableWidgetItemDate = new QTableWidgetItem[rowCount];
+        pQTableWidgetItemIllu = new QTableWidgetItem[rowCount];
 
-                (pQTableWidgetItemId+rowCount)->setText(sqlQuery.value("name").toString());
-                (pQTableWidgetItemDate+rowCount)->setText(sqlQuery.value("date").toString());
-                (pQTableWidgetItemIllu+rowCount)->setText(sqlQuery.value("illu").toString());
+        rowCount=0;
+        sqlQuery.first();
+        while(sqlQuery.next())
+        {
+            ui->pTBsensor->setRowCount(rowCount+1);
 
-                ui->pTBsensor->setItem(rowCount,0, (pQTableWidgetItemId+rowCount));
-                ui->pTBsensor->setItem(rowCount,1, (pQTableWidgetItemDate+rowCount));
-                ui->pTBsensor->setItem(rowCount,2, (pQTableWidgetItemIllu+rowCount));
+            (pQTableWidgetItemId+rowCount)->setText(sqlQuery.value("name").toString());
+            (pQTableWidgetItemDate+rowCount)->setText(sqlQuery.value("date").toString());
+            (pQTableWidgetItemIllu+rowCount)->setText(sqlQuery.value("illu").toString());
 
-                QDateTime xValue = QDateTime::fromString((pQTableWidgetItemDate+rowCount)->text(), "yyyy/MM/dd hh:mm:ss");
-                illuline->append(xValue.toMSecsSinceEpoch(),(pQTableWidgetItemIllu+rowCount)->text().toInt());
-                rowCount++;
-            }
-            ui->pTBsensor->resizeColumnToContents(0);
-            ui->pTBsensor->resizeColumnToContents(1);
-            ui->pTBsensor->resizeColumnToContents(2);
+            ui->pTBsensor->setItem(rowCount,0, (pQTableWidgetItemId+rowCount));
+            ui->pTBsensor->setItem(rowCount,1, (pQTableWidgetItemDate+rowCount));
+            ui->pTBsensor->setItem(rowCount,2, (pQTableWidgetItemIllu+rowCount));
+
+            QDateTime xValue = QDateTime::fromString((pQTableWidgetItemDate+rowCount)->text(), "yyyy/MM/dd hh:mm:ss");
+            illuline->append(xValue.toMSecsSinceEpoch(),(pQTableWidgetItemIllu+rowCount)->text().toInt());
+            rowCount++;
         }
 #else
         while(sqlQuery.next())
@@ -226,7 +243,7 @@ void Tab5sensordatabase::on_pPBsearchDB_clicked()
         //     // 데이터 없으면 기존 UI 범위로 설정
         //     pQDateTimeAxisX->setRange(fromDateTime, toDateTime);
         // }
-
+#endif
         /* 그래프 커서 위치 설정 방법 2번 */
         sqlQuery.first();
         firstDateTime = QDateTime::fromString(sqlQuery.value("date").toString(), "yyyy/MM/dd hh:mm:ss");
@@ -242,13 +259,13 @@ void Tab5sensordatabase::on_pPBsearchDB_clicked()
             pQDateTimeAxisX->setRange(fromDateTime, toDateTime);
         }
 
-        // ui->pTBsensor->resizeColumnToContents(0);
-        // ui->pTBsensor->resizeColumnToContents(1);
-        // ui->pTBsensor->resizeColumnToContents(2);
-        // ui->pTBsensor->resizeColumnToContents(3);
-        // ui->pTBsensor->resizeColumnToContents(4);
-        ui->pTBsensor->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-#endif
+        ui->pTBsensor->resizeColumnToContents(0);
+        ui->pTBsensor->resizeColumnToContents(1);
+        ui->pTBsensor->resizeColumnToContents(2);
+        ui->pTBsensor->resizeColumnToContents(3);
+        ui->pTBsensor->resizeColumnToContents(4);
+        // ui->pTBsensor->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
     }
 }
 
@@ -261,14 +278,29 @@ void Tab5sensordatabase::on_pPBdeleteDB_clicked() // 날짜에 해당하는 db�
     QString strToDateTime = toDateTime.toString("yyyy/MM/dd hh:mm:ss");
     QString strQuery = "delete from sensor_tb where '" + strFromDateTime + "' <= date and date <= '" + strToDateTime + "'";
     QSqlQuery sqlQuery;
+
+#if PROFESSOR_CODE
+    if(pQTableWidgetItemId != nullptr)
+    {
+        delete [] pQTableWidgetItemId;
+        delete [] pQTableWidgetItemDate;
+        delete [] pQTableWidgetItemIllu;
+
+        pQTableWidgetItemId = nullptr;
+        pQTableWidgetItemDate = nullptr;
+        pQTableWidgetItemIllu = nullptr;
+    }
+#endif
     if(sqlQuery.exec(strQuery))
     {
         qDebug() << "Delete Query Ok";
         illuline->clear();
         temp->clear();
         humi->clear();
+#if !PROFESSOR_CODE
         ui->pTBsensor->clearContents();
-        ui->pTBsensor->setRowCount(0);
+#endif
     }
+    ui->pTBsensor->setRowCount(0);
 }
 
