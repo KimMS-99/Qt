@@ -23,7 +23,7 @@
    <item>
     <widget class="QTabWidget" name="pTabWidget">
      <property name="currentIndex">
-      <number>4</number>
+      <number>5</number>
      </property>
      <property name="documentMode">
       <bool>true</bool>
@@ -51,6 +51,11 @@
      <widget class="QWidget" name="pTab5">
       <attribute name="title">
        <string>Tab 5</string>
+      </attribute>
+     </widget>
+     <widget class="QWidget" name="pTab6">
+      <attribute name="title">
+       <string>Tab 6</string>
       </attribute>
      </widget>
     </widget>

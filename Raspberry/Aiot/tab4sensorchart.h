@@ -5,18 +5,11 @@
 #include <QTime>
 #include <QDate>
 #include <QDebug>
-
-#if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
 #include <QChartView>
 #include <QLineSeries>
 #include <QDateTimeAxis>
 #include <QValueAxis>
-#else
-#include <QtCharts/QChartView>
-#include <QtCharts/QChart>
-#include <QtCharts/QLineSeries>
-#include <QtCharts/QDateTimeAxis>
-#include <QtCharts/QValueAxis>
+#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
 QT_CHARTS_USE_NAMESPACE
 #endif
 

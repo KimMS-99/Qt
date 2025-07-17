@@ -27,7 +27,11 @@ MainWidget::MainWidget(QWidget *parent)
     pTab5sensordatabase = new Tab5sensordatabase(ui->pTab5);
     ui->pTab5->setLayout(pTab5sensordatabase->layout());
 
-    ui->pTabWidget->setCurrentIndex(4); // 어떤 tab이 디폴트로 실행되게 할지
+    // tab6
+    pTab6WebCamera = new Tab6WebCamera(ui->pTab6);
+    ui->pTab6->setLayout(pTab6WebCamera->layout());
+
+    ui->pTabWidget->setCurrentIndex(5); // 어떤 tab이 디폴트로 실행되게 할지
 
     // Tab2에서 다른 클라이언트가 [KMS_QT]@LED@0xff 등과 같이 명령어가 오면 Tab1에서 Dial에 객체 포인터를 리턴받아 값을 Dial(lcd와 led도 바뀜)에 값을 바꾼다.
     connect(pTab2socketclient, SIGNAL(ledWriteSig(int)), pTab1DevControl->getpDial(), SLOT(setValue(int)));
