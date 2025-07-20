@@ -8,6 +8,6 @@
 4. 세 번째 탭 화면에서는 수신된 센서 데이터를 sqlite 데이터베이스를 활용하여 저장하고, 검색 기간별 데이터 조회 및 삭제 기능 구현, 조회된 센서데이터는 라인차트로 구현
 
 - **실행 화면**<br>
-![Tab1_Socket](../../docs/Img/QtTest_1.png)<br>
-![Tab2_Sensor](../../docs/Img/QtTest_2.png)<br>
-![Tab3_Sqlite](../../docs/Img/QtTest_3.png)<br>
+![Tab1_Socket](../docs/Img/QtTest_1.png)<br>
+![Tab2_Sensor](../docs/Img/QtTest_2.png)<br>
+![Tab3_Sqlite](../docs/Img/QtTest_3.png)<br>
