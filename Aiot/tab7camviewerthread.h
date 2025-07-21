@@ -17,11 +17,14 @@ class Tab7CamViewerThread : public QWidget
 public:
     explicit Tab7CamViewerThread(QWidget *parent = nullptr);
     ~Tab7CamViewerThread();
+    WebCamThread *getWebCamThread();
 
 private slots:
     void on_pPBcamStart_clicked(bool checked);
 
     void on_pPBsnapShot_clicked();
+
+    void on_pCbRgb_clicked(bool checked);
 
 private:
     Ui::Tab7CamViewerThread *ui;

@@ -51,8 +51,11 @@ MainWidget::MainWidget(QWidget *parent)
 
     // Tab2에서 SENSOR값이 오면 Tab4에서 그래프에 그린다.
     connect(pTab2socketclient, SIGNAL(Tab4RecvDataSig(QString)), pTab4SensorChart, SLOT(Tab4RecvDataSlot(QString)));
-
     connect(pTab2socketclient, SIGNAL(Tab5RecvDataSig(QString)), pTab5sensordatabase, SLOT(Tab5RecvDataSlot(QString)));
+
+    // Tab7에서 카메라로 다른 색상을 읽어오면 KMS_LIN에게 메시지를 보낸다.
+    connect(pTab7CamViewerThread->getWebCamThread(), SIGNAL(socketSendDataSig(QString)), pTab2socketclient->getpSockClient(), SLOT(socketWriteDataSlot(QString)));
+
 }
 
 MainWidget::~MainWidget()

@@ -1,10 +1,14 @@
 #include "tab6webcamera.h"
 #include "ui_tab6webcamera.h"
 
-Tab6WebCamera::Tab6WebCamera(QWidget *parent) : QWidget(parent),
-                                                ui(new Ui::Tab6WebCamera)
+Tab6WebCamera::Tab6WebCamera(QWidget *parent) :
+    QWidget(parent),
+    ui(new Ui::Tab6WebCamera)
 {
     ui->setupUi(this);
+
+    ui->pPBSnapshot->setEnabled(false);
+
     webcamUrl = QUrl("http://192.168.0.59:8080/?action=stream");
     webcamUrl.setUserName("admin");
     webcamUrl.setPassword("admin1234");
@@ -12,11 +16,11 @@ Tab6WebCamera::Tab6WebCamera(QWidget *parent) : QWidget(parent),
     pQWebEngineView = new QWebEngineView(this);
 
     QPixmap pixMap(":/Images/Images/display.jpg");
-    QGraphicsScene *scene = new QGraphicsScene(ui->pGPView);
+    QGraphicsScene* scene = new QGraphicsScene(ui->pGPView);
     scene->addPixmap(pixMap);
     ui->pGPView->setScene(scene);
 
-    connect(ui->pPBCamStart, SIGNAL(clicked(bool)), this, SLOT(camStartSlot(bool)));
+    connect(ui->pPBCamStart,SIGNAL(clicked(bool)),this, SLOT(camStartSlot(bool)));
 }
 
 Tab6WebCamera::~Tab6WebCamera()
@@ -30,7 +34,8 @@ void Tab6WebCamera::camStartSlot(bool bCheck)
     QStringList webcamArg = {
         "-i", "/home/ubuntu/mjpg-streamer-master/input_uvc.so",
         "-o", "/home/ubuntu/mjpg-streamer-master/output_http.so "
-              "-w /home/ubuntu/mjpg-streamer-master/www -c admin:admin1234"};
+        "-w /home/ubuntu/mjpg-streamer-master/www -c admin:admin1234"
+    };
 
     if (bCheck)
     {
@@ -53,6 +58,7 @@ void Tab6WebCamera::camStartSlot(bool bCheck)
 
             ui->pPBCamStart->setText("CamStop");
         }
+        ui->pPBSnapshot->setEnabled(true);
     }
     else
     {
@@ -61,7 +67,7 @@ void Tab6WebCamera::camStartSlot(bool bCheck)
         pQWebEngineView->hide();
 
         // 기존 씬 제거 (메모리 관리 고려)
-        QGraphicsScene *oldScene = ui->pGPView->scene();
+        QGraphicsScene* oldScene = ui->pGPView->scene();
         if (oldScene)
         {
             ui->pGPView->setScene(nullptr);
@@ -70,11 +76,19 @@ void Tab6WebCamera::camStartSlot(bool bCheck)
 
         // 새 씬 생성 및 이미지 추가
         QPixmap pixMap(":/Images/Images/initDisplay.png");
-        QGraphicsScene *scene = new QGraphicsScene(ui->pGPView);
+        QGraphicsScene* scene = new QGraphicsScene(ui->pGPView);
         scene->addPixmap(pixMap);
 
         ui->pGPView->setScene(scene);
 
         ui->pPBCamStart->setText("CamStart");
+        ui->pPBSnapshot->setEnabled(false);
     }
 }
+
+void Tab6WebCamera::on_pPBSnapshot_clicked()
+{
+    pWebCamThread->snapShot();
+}
+
+

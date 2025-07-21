@@ -8,6 +8,8 @@
 #include <QThread>
 #include <QDebug>
 
+#include "webcamthread.h"
+
 namespace Ui {
 class Tab6WebCamera;
 }
@@ -22,12 +24,15 @@ public:
 
 private:
     Ui::Tab6WebCamera *ui;
+
     QWebEngineView *pQWebEngineView;
     QProcess *pQProcess;
     QUrl webcamUrl;
+    WebCamThread *pWebCamThread;
 
 private slots:
     void camStartSlot(bool);
+    void on_pPBSnapshot_clicked();
 };
 
 #endif // TAB6WEBCAMERA_H

@@ -13,7 +13,7 @@ Tab2socketclient::Tab2socketclient(QWidget *parent)
     pKeyboard = new Keyboard();
 
     connect(pSockClient, SIGNAL(socketRevcDataSig(QString)), this, SLOT(updateRecvDataSlot(QString)));
-    on_pPBserverConnect_toggled(true); // 실행하면 서버 연결창이 나옴
+    // on_pPBserverConnect_toggled(true); // 실행하면 서버 연결창이 나옴
 }
 
 Tab2socketclient::~Tab2socketclient()

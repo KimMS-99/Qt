@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>515</width>
+    <height>436</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -21,10 +21,13 @@
        <property name="text">
         <string/>
        </property>
+       <property name="pixmap">
+        <pixmap resource="Images.qrc">:/Images/Images/initDisplay.png</pixmap>
+       </property>
       </widget>
      </item>
      <item>
-      <layout class="QHBoxLayout" name="horizontalLayout">
+      <layout class="QHBoxLayout" name="horizontalLayout" stretch="4,2,4">
        <item>
         <widget class="QPushButton" name="pPBcamStart">
          <property name="text">
@@ -32,6 +35,13 @@
          </property>
          <property name="checkable">
           <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="pCbRgb">
+         <property name="text">
+          <string>RGB Classfy</string>
          </property>
         </widget>
        </item>
@@ -48,6 +58,8 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="Images.qrc"/>
+ </resources>
  <connections/>
 </ui>
