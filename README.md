@@ -1,5 +1,5 @@
 # Qt
-Windows, Ubuntu, Raspberry Pi 환경에서 실습 및 테스트 하였습니다.
+Windows, Ubuntu, Raspberry Pi OS 환경에서 실습 및 테스트 하였습니다.
 
 [Qt 공식문서](https://doc.qt.io/qt-6.8/index.html)
 + Qt 6.8 버전의 기능/클래스 설명
